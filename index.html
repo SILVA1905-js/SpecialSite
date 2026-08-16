@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>para Thay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fffaf0;
+    --paper-line: rgba(169,44,94,0.06);
+    --pink:#e85f96;
+    --deep-pink:#a92c5e;
+    --gold:#e8a52a;
+    --plum:#3f1228;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding: 6vh 5vw;
+    background: radial-gradient(ellipse at 30% 20%, #ffe9c2 0%, #ffdcec 45%, #fdf1e6 100%);
+    font-family:'Cormorant Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .envelope-note{
+    position:fixed;
+    top:3vh; left:50%; transform:translateX(-50%);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.9rem;
+    color:var(--deep-pink);
+    opacity:0.55;
+    text-align:center;
+    z-index:5;
+  }
+
+  .letter{
+    position:relative;
+    width:min(92vw, 640px);
+    background:
+      repeating-linear-gradient(
+        var(--paper),
+        var(--paper) 38px,
+        var(--paper-line) 39px,
+        var(--paper) 40px
+      );
+    padding: 4.2rem 3.2rem 3.6rem;
+    border-radius: 3px;
+    box-shadow:
+      0 2px 4px rgba(169,44,94,0.08),
+      0 20px 50px rgba(169,44,94,0.22),
+      0 2px 24px rgba(0,0,0,0.06);
+    transform: rotate(-0.6deg);
+    animation: settle 1.1s ease;
+  }
+  @keyframes settle{
+    from{ opacity:0; transform: rotate(-0.6deg) translateY(30px) scale(0.98); }
+    to{ opacity:1; transform: rotate(-0.6deg) translateY(0) scale(1); }
+  }
+
+  .letter::before{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 85% 8%, rgba(232,165,42,0.06), transparent 40%),
+                radial-gradient(ellipse at 6% 92%, rgba(232,95,150,0.06), transparent 40%);
+    pointer-events:none;
+  }
+
+  .letter-doodle{
+    width:42px; height:42px;
+    margin-bottom: 1.2rem;
+    opacity:0.85;
+  }
+
+  .letter-greeting{
+    font-family:'Dancing Script', cursive;
+    font-weight:700;
+    font-size:clamp(1.9rem, 5vw, 2.5rem);
+    color:var(--deep-pink);
+    margin-bottom:1.6rem;
+  }
+
+  .letter-body p{
+    font-size:clamp(1.05rem, 2.2vw, 1.22rem);
+    font-style:italic;
+    line-height:1.85;
+    color:var(--plum);
+    margin-bottom:1.5rem;
+  }
+  .letter-body b{
+    font-weight:600;
+    font-style:italic;
+    color:var(--deep-pink);
+  }
+
+  .letter-signature{
+    margin-top: 2.2rem;
+    text-align:right;
+  }
+  .letter-signature .sig-pre{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--plum);
+    opacity:0.8;
+    margin-bottom:0.3rem;
+  }
+  .letter-signature .sig-name{
+    font-family:'Dancing Script', cursive;
+    font-weight:700;
+    font-size:2.1rem;
+    color:var(--deep-pink);
+  }
+  .letter-signature .sig-extra{
+    display:block;
+    font-family:'Dancing Script', cursive;
+    font-weight:500;
+    font-size:1.1rem;
+    color:var(--gold);
+    margin-top:0.2rem;
+    opacity:0.85;
+  }
+
+  /* small photo corner */
+  .photo-corner{
+    position:absolute;
+    top:-22px; right:26px;
+    width:96px;
+    transform: rotate(6deg);
+    filter: drop-shadow(0 8px 14px rgba(0,0,0,0.18));
+  }
+  .photo-corner .tape{
+    position:absolute;
+    top:-10px; left:50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width:52px; height:20px;
+    background: rgba(255,244,214,0.75);
+    border: 1px solid rgba(169,44,94,0.15);
+  }
+  .photo-frame{
+    background:#fff;
+    padding:6px 6px 18px;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .photo-slot{
+    width:100%;
+    aspect-ratio: 1 / 1;
+    background: repeating-linear-gradient(
+      45deg,
+      #fdf1e2, #fdf1e2 8px,
+      #fbe6ce 8px, #fbe6ce 16px
+    );
+    border: 1px dashed rgba(169,44,94,0.35);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Nunito Sans', sans-serif;
+    font-size:0.6rem;
+    color: var(--deep-pink);
+    text-align:center;
+    line-height:1.3;
+    padding: 6px;
+  }
+
+  @media (max-width:520px){
+    .letter{ padding: 3.4rem 1.6rem 2.6rem; }
+    .photo-corner{ width:76px; top:-18px; right:14px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="envelope-note">um capítulo que ainda estamos escrevendo</p>
+
+<div class="letter">
+
+  <!--
+    ✏️ ESPAÇO PARA A FOTO
+    Troque o conteúdo da div "photo-slot" abaixo por uma imagem sua, assim:
+    <img src="sua-foto.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+    (coloque o arquivo da foto na mesma pasta deste HTML)
+  -->
+  <div class="photo-corner">
+    <div class="tape"></div>
+    <div class="photo-frame">
+      <div class="photo-slot">cole aqui<br>a foto</div>
+    </div>
+  </div>
+
+  <svg class="letter-doodle" viewBox="0 0 60 60" fill="none">
+    <path d="M30,32 C24,20 24,8 30,2 C36,8 36,20 30,32 Z" fill="#f0729e"/>
+    <path d="M30,32 C24,20 24,8 30,2 C36,8 36,20 30,32 Z" fill="#ffcf7a" transform="rotate(72 30 32)"/>
+    <path d="M30,32 C24,20 24,8 30,2 C36,8 36,20 30,32 Z" fill="#f0729e" transform="rotate(144 30 32)"/>
+    <path d="M30,32 C24,20 24,8 30,2 C36,8 36,20 30,32 Z" fill="#ffcf7a" transform="rotate(216 30 32)"/>
+    <path d="M30,32 C24,20 24,8 30,2 C36,8 36,20 30,32 Z" fill="#f0729e" transform="rotate(288 30 32)"/>
+    <circle cx="30" cy="32" r="5" fill="#e8a52a"/>
+  </svg>
+
+  <p class="letter-greeting">Querida Thay,</p>
+
+  <div class="letter-body">
+    <p>Se no primeiro lugar eu te falei sobre lírios, aqui eu quero te contar sobre o jardim inteiro que ainda vamos plantar. Porque o que eu sinto por você não cabe mais numa flor só — cresceu, se espalhou, tomou conta de todos os cantos que eu costumava guardar só pra mim.</p>
+
+    <p>Eu te amo, Thay. Não de um jeito pequeno ou de passagem — de um jeito que já se acostumou a te procurar nos planos, nas decisões, nos dias comuns. Eu me vejo com você lá na frente, e isso não me assusta: me acalma. Já imaginei um domingo de manhã qualquer, e você do meu lado como quem sempre esteve.</p>
+
+    <p>Eu não sei exatamente que forma o nosso futuro vai ter. Mas sei o que eu quero que tenha dentro dele: você. E, com você, eu não tenho dúvida nenhuma de que a gente vai ser feliz — não de um jeito perfeito, mas de um jeito nosso, verdadeiro, construído aos poucos, como esse site que ainda está sendo escrito.</p>
+
+    <p>Esse é só mais um capítulo. Tem muito mais vindo por aí.</p>
+  </div>
+
+  <div class="letter-signature">
+    <span class="sig-pre">com todo o meu amor,</span>
+    <span class="sig-name">Alessandro</span>
+    <span class="sig-extra">— Anthony &amp; Antonella</span>
+  </div>
+
+</div>
+
+</body>
+</html>
